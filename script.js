@@ -12,14 +12,18 @@ if (operationChoice !== "+" && operationChoice !== "-"
 else {
     value1 = parseFloat(prompt("Skriv in ditt första värde:"));
     value2 = parseFloat(prompt("Skriv in ditt andra värde:"));
+    console.log(value1)
+    console.log(value2)
 }
 
+if (isNaN(value1) || isNaN(value2)) {
+    alert("Fel: Du måste mata in ett giltigt tal!");
+}
 
 function additionMethod(a, b) {
     return a + b;
 }
-
-
+ 
 function subtractionMethod(a, b) {
     return a - b;
 }
@@ -52,25 +56,31 @@ function powerMethod(a, b) {
 switch(operationChoice) {
     case "+":
         result = additionMethod(value1, value2)
+        console.log(result) 
         break;
     case "-":
         result = subtractionMethod(value1, value2);
+        console.log(result)
         break;
     case "*":
         result = multiplicationMethod(value1, value2);
+        console.log(result)
         break;
     case "/":
         result = divisionMethod(value1, value2);
+        console.log(result)
         break;
     case "%":
         result = modulusMethod(value1, value2);
+        console.log(result)
         break;
     case "^":
         result = powerMethod(value1, value2);
+        console.log(result)
         break;
     default:
         result = "Ogiltig operation!";
 }
 
-
-alert("Här är resultatet: " + result)
+alert("Här är resultatet: " + value1 + " " + operationChoice + " " + value1 + " " + "=" + " " + result)
+console.log(result)
