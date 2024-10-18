@@ -25,6 +25,44 @@ if (isNaN(value1) || isNaN(value2)) {
     // If either value is not a number, display an alert
     alert("Fel: Du måste mata in giltiga tal!");
 }
+else {
+    // Use a switch statement to perform the chosen operation based on user input
+    switch (operationChoice) {
+        case "+": // If the operation is addition
+            result = additionMethod(value1, value2);
+            console.log(result); // Log the result to the console
+            break;
+        case "-": // If the operation is subtraction
+            result = subtractionMethod(value1, value2);
+            console.log(result); // Log the result to the console
+            break;
+        case "*": // If the operation is multiplication
+            result = multiplicationMethod(value1, value2);
+            console.log(result); // Log the result to the console
+            break;
+        case "/": // If the operation is division
+            result = divisionMethod(value1, value2); // Call divisionMethod
+            console.log(result); // Log the result to the console
+            break;
+        case "%": // If the operation is modulus
+            result = modulusMethod(value1, value2);
+            console.log(result); // Log the result to the console
+            break;
+        case "^": // If the operation is exponentiation
+            result = powerMethod(value1, value2);
+            console.log(result); // Log the result to the console
+            break;
+        default:
+            // If the operation is invalid, set the result as an error message
+            result = "Ogiltig operation!";
+    }
+    // Display the result of the calculation in an alert
+    alert("Här är resultatet: " + value1 + " " + operationChoice + " " + value2 + " = " + result);
+
+    // Log the result to the console for debugging
+    console.log(result);
+}
+
 
 // Define the method for addition
 function additionMethod(a, b) {
@@ -69,40 +107,3 @@ function modulusMethod(a, b) {
 function powerMethod(a, b) {
     return Math.pow(a, b); // Return a raised to the power of b
 }
-
-// Use a switch statement to perform the chosen operation based on user input
-switch (operationChoice) {
-    case "+": // If the operation is addition
-        result = additionMethod(value1, value2);
-        console.log(result); // Log the result to the console
-        break;
-    case "-": // If the operation is subtraction
-        result = subtractionMethod(value1, value2);
-        console.log(result); // Log the result to the console
-        break;
-    case "*": // If the operation is multiplication
-        result = multiplicationMethod(value1, value2);
-        console.log(result); // Log the result to the console
-        break;
-    case "/": // If the operation is division
-        result = divisionMethod(value1, value2); // Call divisionMethod
-        console.log(result); // Log the result to the console
-        break;
-    case "%": // If the operation is modulus
-        result = modulusMethod(value1, value2);
-        console.log(result); // Log the result to the console
-        break;
-    case "^": // If the operation is exponentiation
-        result = powerMethod(value1, value2);
-        console.log(result); // Log the result to the console
-        break;
-    default:
-        // If the operation is invalid, set the result as an error message
-        result = "Ogiltig operation!";
-}
-
-// Display the result of the calculation in an alert
-alert("Här är resultatet: " + value1 + " " + operationChoice + " " + value2 + " = " + result);
-
-// Log the result to the console for debugging
-console.log(result);
