@@ -12,11 +12,11 @@ function getNumberInput(message) {
 function getOperation() {
   let operation;
   do {
-      operation = prompt("Which operation do you want to perform? Enter +, -, *, or /:");
-      if (operation !== "+" && operation !== "-" && operation !== "*" && operation !== "/") {
-          alert("Error: Please enter a valid operation (+, -, *, or /).");
+      operation = prompt("Which operation do you want to perform? Enter +, -, *, %, ^ or /:");
+      if (operation !== "+" && operation !== "-" && operation !== "*" && operation !== "/" && operation !== "^" && operation !== "%") {
+          alert("Error: Please enter a valid operation (+, -, *, %, ^ or /).");
       }
-  } while (operation !== "+" && operation !== "-" && operation !== "*" && operation !== "/");
+  } while (operation !== "+" && operation !== "-" && operation !== "*" && operation !== "/" && operation !== "^" && operation !== "%");
   return operation;
 }
 
@@ -41,6 +41,16 @@ switch (operation) {
       break;
   case "/":
       result = number2 !== 0 ? number1 / number2 : "Error: Division by zero is not allowed!";
+      break;
+  case "^":
+      result = number1 ** number2;
+      break;
+  case "%":
+      if (number2 === 0) {
+        result = "Error: Division by zero is not allowed!";
+      } else {
+        result = number1 % number2;
+      }
       break;
 }
 
