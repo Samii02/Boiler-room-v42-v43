@@ -63,6 +63,7 @@ else {
     console.log(result);
 }
 
+// Methods ---------------------------------------------------------
 
 // Define the method for addition
 function additionMethod(a, b) {
