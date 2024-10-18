@@ -46,7 +46,8 @@ function divisionMethod(a, b) {
     if (b === 0) {
         // If b is zero, return an error message
         return "Fel: Division med noll är förbjudet!!!";
-    } else {
+    } 
+    else {
         // Otherwise, return the quotient
         return a / b;
     }
@@ -57,7 +58,8 @@ function modulusMethod(a, b) {
     if (b === 0) {
         // If b is zero, return an error message
         return "Fel: Division med noll är förbjudet!!!";
-    } else {
+    } 
+    else {
         // Otherwise, return the remainder of a divided by b
         return a % b;
     }
