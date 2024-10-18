@@ -1,13 +1,17 @@
+let value1;
+let value2;
+let result;
+
 let operationChoice = prompt("Välj en operation att urföra: +, - , *, /, %, ^.")
+
 if (operationChoice !== "+" && operationChoice !== "-"
     && operationChoice !== "*" && operationChoice !== "/" &&
     operationChoice !== "%" && operationChoice !== "^") {
     alert("Ogiltig operation!")
 }
 else {
-    let value1 = parseFloat(prompt("Skriv in ditt första värde:"));
-    let value2 = parseFloat(prompt("Skriv in ditt andra värde:"));
-    let result;
+    value1 = parseFloat(prompt("Skriv in ditt första värde:"));
+    value2 = parseFloat(prompt("Skriv in ditt andra värde:"));
 }
 
 
@@ -30,7 +34,9 @@ function divisionMethod(a, b) {
     if (b === 0) {
         return "Fel: Division med noll är förbjudet!!!";
     }
-    return a / b;
+    else {
+        return a / b;
+    }
 }
 
 
