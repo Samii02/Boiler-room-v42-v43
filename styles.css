@@ -48,3 +48,14 @@ button {
     background-color: rgb(115, 115, 115);
 }
 
+button:hover {
+    background-color: rgb(78, 78, 78);
+}
+
+.operatorVertical:hover {
+    background-color: rgb(255, 202, 104);
+}
+
+.operatorHorizontal:hover, .acButton:hover {
+    background-color: rgb(152, 152, 152);
+}
