@@ -39,3 +39,12 @@ button {
     gap: 10px;
     padding: 20px;
 }
+
+.operatorVertical {
+    background-color: rgb(255, 172, 18);
+}
+
+.operatorHorizontal, .acButton {
+    background-color: rgb(115, 115, 115);
+}
+
