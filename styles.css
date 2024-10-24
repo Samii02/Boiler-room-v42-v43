@@ -19,7 +19,9 @@ body {
     width: 100%;
     border: none;
     padding: 30;
-    font-size: 6rem;
+    font-size: 5.5rem;
+    text-align: right;
+    color: white;
     background-color: rgb(57, 54, 54);
 
 }
