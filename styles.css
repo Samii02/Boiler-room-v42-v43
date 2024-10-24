@@ -1,5 +1,11 @@
-button {
+.calaculator {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    max-width: 500px;
+    border-radius: 1rem;
+}
+
+button {
     width: 100px;
     height: 100px;
     border-radius: 50px;
@@ -17,4 +23,6 @@ button:hover {
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 20px;
 }
