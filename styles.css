@@ -17,8 +17,9 @@ body {
 
 .display {
     width: 100%;
+    max-width: calc(100% - 30px);
     border: none;
-    padding: 30;
+    padding: 15px;
     font-size: 5.5rem;
     text-align: right;
     color: white;
