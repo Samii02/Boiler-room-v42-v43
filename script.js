@@ -10,5 +10,5 @@ function clearDisplay() {
 
 function clearLatest() {
     const display = document.querySelector('.display');
-    display.value = display.value.slice(0, -1)
+    display.value = display.value.slice(0, -1) // Clears the letest input
 }
