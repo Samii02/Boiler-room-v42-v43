@@ -7,3 +7,8 @@ function clearDisplay() {
     const display = document.querySelector('.display');
     display.value = ''; // Clear the display
 }
+
+function clearLatest() {
+    const display = document.querySelector('.display');
+    display.value = display.value.slice(0, -1)
+}
