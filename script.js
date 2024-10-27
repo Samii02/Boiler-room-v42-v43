@@ -11,17 +11,55 @@ function updateDisplay() {
 
 // Clear error if exists and add a character (number/operator) to the display
 function appendToDisplay(char) {
+    // List of operators
+    const operators = ["+", "-", "*", "/", "^", "%"];
+
+    // If there was an error, clear the display first
     if (hasError) {
-        clearDisplay(); 
-        hasError = false; 
+        clearDisplay();
+        hasError = false;
     }
+
+    // Check if char is an operator and prevent consecutive operators
+    if (operators.includes(char)) {
+        if (displayValue === "" || operators.includes(displayValue.slice(-1))) {
+            // Do not allow consecutive operators or starting with an operator
+            return;
+        }
+    }
+
+    // Check if char is a decimal point and prevent multiple decimals in the same number
+    if (char === ".") {
+        // Find the last occurrence of an operator
+        const lastOperatorIndex = Math.max(
+            displayValue.lastIndexOf("+"),
+            displayValue.lastIndexOf("-"),
+            displayValue.lastIndexOf("*"),
+            displayValue.lastIndexOf("/"),
+            displayValue.lastIndexOf("^"),
+            displayValue.lastIndexOf("%")
+        );
+
+        // Get the substring after the last operator
+        const lastNumber = displayValue.slice(lastOperatorIndex + 1);
+
+        // If the last number already contains a decimal point, don't add another one
+        if (lastNumber.includes(".")) {
+            return;
+        }
+    }
+
+    // If starting a new calculation, clear the display first
     if (newCalculation) {
         clearDisplay();
         newCalculation = false;
     }
+
+    // Append the character and update the display
     displayValue += char;
     updateDisplay();
 }
+
 
 // Parse the expression into a list of numbers and operators
 function parseExpression(expression) {
