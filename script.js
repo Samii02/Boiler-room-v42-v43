@@ -1,4 +1,6 @@
 let displayValue = "";
+let hasError = false; 
+let calculationLog = []; // Array to store all calculations
 
 // Update the display
 function updateDisplay() {
@@ -6,8 +8,12 @@ function updateDisplay() {
     display.value = displayValue;
 }
 
-// Add a character (number/operator) to the display
+// Clear error if exists and add a character (number/operator) to the display
 function appendToDisplay(char) {
+    if (hasError) {
+        clearDisplay(); 
+        hasError = false; 
+    }
     displayValue += char;
     updateDisplay();
 }
@@ -21,7 +27,6 @@ function parseExpression(expression) {
 
 // Evaluate the expression using two passes with switch cases for operator precedence
 function evaluateExpression(tokens) {
-    // First pass for *, /, %, ^
     let intermediate = [];
     let i = 0;
     while (i < tokens.length) {
@@ -34,6 +39,7 @@ function evaluateExpression(tokens) {
                 if (tokens[i + 1] === 0) {
                     clearDisplay();
                     appendToDisplay("Error!");
+                    hasError = true;
                     return null;
                 }
                 intermediate[intermediate.length - 1] /= tokens[i + 1];
@@ -43,6 +49,7 @@ function evaluateExpression(tokens) {
                 if (tokens[i + 1] === 0) {
                     clearDisplay();
                     appendToDisplay("Error!");
+                    hasError = true;
                     return null;
                 }
                 intermediate[intermediate.length - 1] %= tokens[i + 1];
@@ -78,19 +85,47 @@ function calculate() {
     const tokens = parseExpression(displayValue);
     const result = evaluateExpression(tokens);
     if (result !== null) {
+        // Save the equation and result to the log
+        saveToLog(displayValue + " = " + result.toString());
         displayValue = result.toString();
         updateDisplay();
     }
 }
 
+
 // Clear the display
 function clearDisplay() {
     displayValue = "";
+    hasError = false;
     updateDisplay();
 }
 
 // Clear the latest input
 function clearLatest() {
-    displayValue = displayValue.slice(0, -1); // Clears the latest input
-    updateDisplay();
+    if (hasError) {
+        clearDisplay();
+    } else {
+        displayValue = displayValue.slice(0, -1);
+        updateDisplay();
+    }
+}
+// Save a calculation to the log
+function saveToLog(equation) {
+    // Add the equation to the log array
+    calculationLog.push(equation);
+
+    // Update the log display
+    const logList = document.getElementById('log');
+    const logEntry = document.createElement('li');
+    logEntry.textContent = equation;
+    logList.appendChild(logEntry);
+}
+
+function clearHistory() {
+    // Clear the calculation log array
+    calculationLog = [];
+
+    // Clear the displayed list in the HTML
+    const logList = document.getElementById('log');
+    logList.innerHTML = ''; // This removes all the <li> elements
 }

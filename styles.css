@@ -66,3 +66,45 @@ button:hover {
 .operatorHorizontal:hover, .acButton:hover {
     background-color: rgb(152, 152, 152);
 }
+
+.calculation-log {
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(30, 29, 29);
+    max-width: 500px;
+}
+
+.calculation-log h2 {
+    text-align: center;
+}
+
+.calculation-log ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.calculation-log li {
+    background-color: rgb(240, 240, 240);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid rgb(86, 159, 184);
+}
+
+.logContainer {
+    margin: 1.5rem;
+    background-color: rgb(227, 227, 227);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.clearHistory {
+    background-color: rgb(115, 115, 115);
+    border-radius: 10px;
+    font-size: 1rem;
+    height: 65px;
+}
+
+.clearHistory:hover {
+    background-color: rgb(152, 152, 152);
+}
