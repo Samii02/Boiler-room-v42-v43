@@ -1,5 +1,6 @@
 let displayValue = "";
 let hasError = false; 
+let newCalculation = false;
 let calculationLog = []; // Array to store all calculations
 
 // Update the display
@@ -14,6 +15,10 @@ function appendToDisplay(char) {
         clearDisplay(); 
         hasError = false; 
     }
+    if (newCalculation) {
+        clearDisplay();
+        newCalculation = false;
+    }
     displayValue += char;
     updateDisplay();
 }
@@ -27,58 +32,70 @@ function parseExpression(expression) {
 
 // Evaluate the expression using two passes with switch cases for operator precedence
 function evaluateExpression(tokens) {
+    // First pass: Handle exponentiation (^)
     let intermediate = [];
     let i = 0;
     while (i < tokens.length) {
-        switch (tokens[i]) {
+        if (tokens[i] === "^") {
+            intermediate[intermediate.length - 1] = Math.pow(intermediate[intermediate.length - 1], tokens[i + 1]);
+            i += 2;
+        } else {
+            intermediate.push(tokens[i]);
+            i++;
+        }
+    }
+
+    // Second pass: Handle multiplication (*), division (/), and modulo (%)
+    let intermediate2 = [];
+    i = 0;
+    while (i < intermediate.length) {
+        switch (intermediate[i]) {
             case "*":
-                intermediate[intermediate.length - 1] *= tokens[i + 1];
+                intermediate2[intermediate2.length - 1] *= intermediate[i + 1];
                 i += 2;
                 break;
             case "/":
-                if (tokens[i + 1] === 0) {
+                if (intermediate[i + 1] === 0) {
                     clearDisplay();
                     appendToDisplay("Error!");
                     hasError = true;
                     return null;
                 }
-                intermediate[intermediate.length - 1] /= tokens[i + 1];
+                intermediate2[intermediate2.length - 1] /= intermediate[i + 1];
                 i += 2;
                 break;
             case "%":
-                if (tokens[i + 1] === 0) {
+                if (intermediate[i + 1] === 0) {
                     clearDisplay();
                     appendToDisplay("Error!");
                     hasError = true;
                     return null;
                 }
-                intermediate[intermediate.length - 1] %= tokens[i + 1];
-                i += 2;
-                break;
-            case "^":
-                intermediate[intermediate.length - 1] = Math.pow(intermediate[intermediate.length - 1], tokens[i + 1]);
+                intermediate2[intermediate2.length - 1] %= intermediate[i + 1];
                 i += 2;
                 break;
             default:
-                intermediate.push(tokens[i]);
+                intermediate2.push(intermediate[i]);
                 i++;
         }
     }
 
-    // Second pass for + and -
-    let result = intermediate[0];
-    for (let j = 1; j < intermediate.length; j += 2) {
-        switch (intermediate[j]) {
+    // Third pass: Handle addition (+) and subtraction (-)
+    let result = intermediate2[0];
+    for (let j = 1; j < intermediate2.length; j += 2) {
+        switch (intermediate2[j]) {
             case "+":
-                result += intermediate[j + 1];
+                result += intermediate2[j + 1];
                 break;
             case "-":
-                result -= intermediate[j + 1];
+                result -= intermediate2[j + 1];
                 break;
         }
     }
+
     return result;
 }
+
 
 // Calculate the result based on the display content
 function calculate() {
@@ -89,6 +106,7 @@ function calculate() {
         saveToLog(displayValue + " = " + result.toString());
         displayValue = result.toString();
         updateDisplay();
+        newCalculation = true;
     }
 }
 
